@@ -1,0 +1,27 @@
+<%= form_for @account, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field control-text' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :amount, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :amount, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :currency, :class => 'control-label' %>
+    <div class="controls">
+      <% @rub = 'Рубли' %>
+      <%= f.select(:currency, ([[@rub,'RUR'],['Доллары','USD'],['Евро','EUR']])) %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                accounts_path, :class => 'btn btn-link' %>
+  </div>
+<% end %>

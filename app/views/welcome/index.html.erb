@@ -1,0 +1,25 @@
+<%= render layout: "welcome" do %>
+    <% if user_signed_in? %>
+    <h4 align = "center">
+      Вы вошли как <br /><br />
+      <% @linker = '<i class="fa fa-user"></i><span style="color: green">'.html_safe+' '+@user[:email]+'</span>'.html_safe%>
+      <%= link_to @linker, edit_user_path(current_user[:id])%>
+
+      <br /><br />
+      <% @linker = '<i class="fa fa-sign-out"></i>'.html_safe %>
+      <%= link_to @linker+" Выход ", destroy_user_session_path, :method =>:delete%>
+    </h4>
+    <% else %>
+          <%= form_for(:user, :as=> @_frm, :url => new_user_session_path(@_frm)) do |f| %>
+              <legend>Войти</legend>
+              <div><%= f.label :email, 'Email' %>
+                <%= f.email_field :email, :autofocus => true %></div>
+              <br />
+              <div><%= f.label :password, 'Пароль' %>
+                <%= f.password_field :password %></div>
+              <br />
+              <div><%= f.submit "Войти", class:"btn btn-info", style: "width:100%"%></div>
+          <% end %>
+
+    <% end %>
+<% end %>

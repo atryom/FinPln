@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @transaction.name %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @transaction.note %>
+</p>
+
+<p>
+  <strong>Plan amount:</strong>
+  <%= @transaction.plan_amount %>
+</p>
+
+<p>
+  <strong>Plan date:</strong>
+  <%= @transaction.plan_date %>
+</p>
+
+<p>
+  <strong>Fact amount:</strong>
+  <%= @transaction.fact_amount %>
+</p>
+
+<p>
+  <strong>Fact date:</strong>
+  <%= @transaction.fact_date %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @transaction.completed %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @transaction.group_id %>
+</p>
+
+<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'Back', transactions_path %>
