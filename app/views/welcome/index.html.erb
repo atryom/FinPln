@@ -1,6 +1,6 @@
 <%= render layout: "welcome" do %>
     <% if user_signed_in? %>
-    <h4 align = "center">
+    <!--<h4>
       Вы вошли как <br /><br />
       <% @linker = '<i class="fa fa-user"></i><span style="color: green">'.html_safe+' '+@user[:email]+'</span>'.html_safe%>
       <%= link_to @linker, edit_user_path(current_user[:id])%>
@@ -9,6 +9,18 @@
       <% @linker = '<i class="fa fa-sign-out"></i>'.html_safe %>
       <%= link_to @linker+" Выход ", destroy_user_session_path, :method =>:delete%>
     </h4>
+    !-->
+        <legend>Книги:</legend>
+        <div class="list-group">
+          <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading"><span class="fa fa-book"></span> Домашняя бухгалтерия</h4>
+            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+          </a>
+          <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading"><span class="fa fa-book"></span> Проект FinPln</h4>
+            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+          </a>
+        </div>
     <% else %>
           <%= form_for(:user, :as=> @_frm, :url => new_user_session_path(@_frm)) do |f| %>
               <legend>Войти</legend>
