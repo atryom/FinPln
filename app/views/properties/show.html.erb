@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @property.user_id %>
+</p>
+
+<p>
+  <strong>Need 4 good:</strong>
+  <%= @property.need_4_good %>
+</p>
+
+<p>
+  <strong>Bottleneck:</strong>
+  <%= @property.bottleneck %>
+</p>
+
+<%= link_to 'Edit', edit_property_path(@property) %> |
+<%= link_to 'Back', properties_path %>

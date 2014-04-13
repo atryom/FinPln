@@ -1,10 +1,18 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :check_current_book
+
 
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all.order("plan_date ASC")
+    @full_summ = full_summ
+    @accounts = current_book.accounts
+    @fact_transactions = current_book.transactions.where(completed: true).order("fact_date ASC")
+
+    Transaction.set_null_summ(current_book.book_full_summ, current_user)
+    @plan_transactions = current_book.transactions.where(completed: false).order("plan_date ASC")
+    #@plan_transactions = @plan_transactions.add_def_amount(@plan_transactions)
   end
 
   # GET /transactions/1
@@ -24,11 +32,12 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = current_book.transactions.build(transaction_params)
+    #@transaction = Transaction.new(transaction_params)
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+        format.html { redirect_to transactions_path, notice: 'Transaction was successfully created.' }
         format.json { render action: 'show', status: :created, location: @transaction }
       else
         format.html { render action: 'new' }
@@ -42,7 +51,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to transactions_path, notice: 'Transaction was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -63,6 +72,12 @@ class TransactionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def check_current_book
+      if (current_book == nil)
+        redirect_to welcome_index_path
+      end
+    end
+
     def set_transaction
       @transaction = Transaction.find(params[:id])
     end

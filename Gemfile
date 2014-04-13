@@ -48,3 +48,15 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'devise'
 gem 'omniauth'
+gem 'font-awesome-less'
+
+group :production do
+  gem 'unicorn'
+end
+
+group :development do
+  gem 'rvm-capistrano'
+  gem 'capistrano'
+end
+
+

@@ -1,4 +1,6 @@
 Finpln::Application.routes.draw do
+  resources :properties
+
   get "welcome/index"
   resources :user_books
 

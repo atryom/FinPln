@@ -2,35 +2,79 @@
 <div class="page-header">
   <h2>Транзакции</h2>
 </div>
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>Дата</th>
-    <th><%= model_class.human_attribute_name(:name) %></th>
-    <th>Сумма</th>
-    <th><%=t '.actions', :default => t("helpers.actions") %></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @transactions.each do |transaction| %>
-      <tr>
-        <td><%= transaction.view_date   %></td>
-        <td><%= transaction.name %></td>
-        <td><%= transaction.view_amount %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_transaction_path(transaction), :class => 'btn btn-mini btn-link' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      transaction_path(transaction),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <%= render 'accounts' %>
+    </div>
+    <div class="col-lg-9">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Дата</th>
+            <th><%= model_class.human_attribute_name(:name) %></th>
+            <th>Сумма</th>
+            <th>Остаток</th>
+            <th><%=t '.actions', :default => t("helpers.actions") %></th>
+          </tr>
+          </thead>
+          <% if @fact_transactions.size > 0 %>
+          <thead>
+            <tr class="info">
+              <td style="text-align: center; text-shadow: 2px 2px 2px black" colspan="5"><h4>Завершенные</h4></td>
+            </tr>
+          </thead>
+          <tbody>
+          <% @fact_transactions.each do |transaction| %>
+              <tr>
+                <td><%= transaction.view_date   %></td>
+                <td><%= transaction.name %></td>
+                <td><%= transaction.view_amount %></td>
+                <td><%= "0,00 р." %></td>
+                <td>
+                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                              edit_transaction_path(transaction), :class => 'btn btn-mini btn-link' %>
+                  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                              transaction_path(transaction),
+                              :method => :delete,
+                              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                              :class => 'btn btn-mini btn-danger' %>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+          <% end
+          if @plan_transactions.size > 0
+          %>
+          <thead>
+          <tr class="info">
+            <td style="text-align: center; text-shadow: 2px 2px 2px black" colspan="5"><h4>Запланированные</h4></td>
+          </tr>
+          </thead>
+          <tbody>
+          <% @plan_transactions.each do |transaction| %>
+              <tr>
+                <td><%= transaction.view_date   %></td>
+                <td><%= transaction.name %></td>
+                <td><%= transaction.view_amount %></td>
+                <td><%= transaction.add_def_amount %></td>
+                <td>
+                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                              edit_transaction_path(transaction), :class => 'btn btn-mini btn-link' %>
+                  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                              transaction_path(transaction),
+                              :method => :delete,
+                              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                              :class => 'btn btn-mini btn-danger' %>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+          <% end %>
+        </table>
+        <%= link_to t('.new', :default => t("helpers.links.new")),
             new_transaction_path,
             :class => 'btn btn-primary' %>
+    </div>
+  </div>
+</div>

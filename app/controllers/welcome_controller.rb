@@ -1,9 +1,11 @@
 class WelcomeController < ApplicationController
   def index
-    @book = current_book
+    session[:book_id] = nil
     @devise = Devise
     if user_signed_in?
       @user = current_user
+      @ubooks = @user.user_books
+
     end
 
   end

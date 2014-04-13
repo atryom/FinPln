@@ -10,28 +10,35 @@
       <%= link_to @linker+" Выход ", destroy_user_session_path, :method =>:delete%>
     </h4>
     !-->
-        <legend>Книги:</legend>
+        <legend>Книги учета:</legend>
         <div class="list-group">
-          <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading"><span class="fa fa-book"></span> Домашняя бухгалтерия</h4>
-            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          </a>
-          <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading"><span class="fa fa-book"></span> Проект FinPln</h4>
-            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          </a>
-        </div>
+          <% @ubooks.each do |ubook|
+             @book = Book.find(ubook.book_id)
+             @linker = "<h4 class=\"list-group-item-heading\"><span style=\"color:darkblue\" class=\"fa fa-book\"></span> ".html_safe + @book.name + "</h4>
+                <p class=\"list-group-item-text\">".html_safe + @book.note + "</p>".html_safe
+          %>
+              <%= link_to @linker, book_path(ubook.book_id), class: "list-group-item" %>
+          <% end %>
+         </div>
+        <%= link_to "<span class=\"fa fa-plus\"></span>".html_safe + " Новая книга", new_book_path, class: "btn btn-primary" %>
     <% else %>
+        <div align="center" class="jumbotron">
           <%= form_for(:user, :as=> @_frm, :url => new_user_session_path(@_frm)) do |f| %>
               <legend>Войти</legend>
-              <div><%= f.label :email, 'Email' %>
-                <%= f.email_field :email, :autofocus => true %></div>
-              <br />
-              <div><%= f.label :password, 'Пароль' %>
-                <%= f.password_field :password %></div>
-              <br />
-              <div><%= f.submit "Войти", class:"btn btn-info", style: "width:100%"%></div>
+                <div class="control-group ">
+                  <%= f.label :email, :class => 'control-label' %>
+                  <div class="controls">
+                    <%= f.email_field :email, :autofocus => true, :class => 'text_field' %>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <%= f.label :password, :class => 'control-label' %>
+                  <div class="controls">
+                    <%= f.password_field :password, :class => 'text_field' %>
+                  </div>
+                </div>
+              <div><%= f.submit "Войти", class:"btn btn-info"%></div>
           <% end %>
-
+        </div>
     <% end %>
 <% end %>

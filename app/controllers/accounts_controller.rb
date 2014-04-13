@@ -5,7 +5,11 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = current_user.accounts
+    if current_book == nil
+      redirect_to welcome_index_path
+    else
+      @accounts = current_book.accounts
+    end
   end
 
   # GET /accounts/1
@@ -25,11 +29,11 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.json
   def create
-    @account = current_user.accounts.build(account_params)
+    @account = current_book.accounts.build(account_params)
     #@account = Account.new(account_params)
     respond_to do |format|
       if @account.save
-        format.html { redirect_to accounts_path, notice: 'Добавлен новый счет.' }
+        format.html { redirect_to transactions_path, notice: 'Добавлен новый счет.' }
         format.json { render action: 'show', status: :created, location: @account }
       else
         format.html { render action: 'new' }
@@ -41,17 +45,9 @@ class AccountsController < ApplicationController
   # PATCH/PUT /accounts/1
   # PATCH/PUT /accounts/1.json
   def update
-    #@amm = account_params[:amount]
-    #puts(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    #puts(@amm)
-    #@amm = @amm.gsub(",",".")
-    #puts(@amm)
-    #account_params[:amount] = @amm
-    #puts(account_params)
-    #puts(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to accounts_path, notice: 'Счет был обновлен.' }
+        format.html { redirect_to transactions_path, notice: 'Счет был обновлен.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

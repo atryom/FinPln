@@ -1,0 +1,31 @@
+<h1>Listing properties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Need 4 good</th>
+      <th>Bottleneck</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @properties.each do |property| %>
+      <tr>
+        <td><%= property.user_id %></td>
+        <td><%= property.need_4_good %></td>
+        <td><%= property.bottleneck %></td>
+        <td><%= link_to 'Show', property %></td>
+        <td><%= link_to 'Edit', edit_property_path(property) %></td>
+        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Property', new_property_path %>

@@ -11,19 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406081327) do
+ActiveRecord::Schema.define(version: 20140411133627) do
 
   create_table "accounts", force: true do |t|
     t.string   "name"
     t.string   "currency"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
     t.decimal  "amount"
+    t.integer  "book_id"
   end
 
   create_table "books", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "note"
+  end
+
+  create_table "properties", force: true do |t|
+    t.integer  "user_id"
+    t.decimal  "need_4_good"
+    t.decimal  "bottleneck"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -39,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140406081327) do
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "book_id"
   end
 
   create_table "user_books", force: true do |t|

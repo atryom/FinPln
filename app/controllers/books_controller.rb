@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /books
   # GET /books.json
@@ -10,6 +11,8 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    session[:book_id] = params[:id]
+    redirect_to transactions_path
   end
 
   # GET /books/new
@@ -25,10 +28,11 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
+    @book.user_books.build(user: current_user)
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to welcome_index_path, notice: 'Book was successfully created.' }
         format.json { render action: 'show', status: :created, location: @book }
       else
         format.html { render action: 'new' }
@@ -56,7 +60,7 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url }
+      format.html { redirect_to transactions_path}
       format.json { head :no_content }
     end
   end
@@ -69,6 +73,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name)
+      params.require(:book).permit(:name, :note)
     end
 end

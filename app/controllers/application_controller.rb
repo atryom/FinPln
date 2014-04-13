@@ -20,7 +20,14 @@ class ApplicationController < ActionController::Base
   end
 
   def full_summ
-    sprintf("%0.02f р.",current_user.accounts.sum("amount"))
+    sprintf("%0.02f р.", current_book.accounts.sum("amount"))
   end
 
+  def need_4_good
+    if user_signed_in?
+      sprintf("%0.02f р.",current_user.property.need_4_good)
+    else
+      sprintf("%0.02f р.", 0)
+    end
+  end
 end

@@ -19,11 +19,47 @@
       </div>
       <div class="navbar-collapse collapse navbar-inverse-collapse">
         <ul class="nav navbar-nav">
-          <li><%= link_to "Счета", accounts_path %></li>
+          <% if controller.current_book !=nil %>
+            <li><%= link_to '<span class="fa fa-money"></span>'.html_safe + " Транзакции", transactions_path %></li>
+          <% end %>
+          <% if user_signed_in? && current_user.user_books.size >0 %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-book"></span> Фин.книги  <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+
+              <% current_user.user_books.each do |ubook|
+                @book = Book.find(ubook.book_id)
+              %>
+              <li>
+                <% if controller.current_book == @book %>
+                    <%= link_to '<span class="fa fa-book"></span>'.html_safe + ' ' + @book.name, book_path(@book), style: "background-color: #395c82; color: #ffffff" %>
+                <% else %>
+                    <%= link_to '<span class="fa fa-book"></span>'.html_safe + ' ' + @book.name, book_path(@book) %>
+                <% end %>
+              </li>
+
+              <% end
+                @book = controller.current_book
+                if @book
+              %>
+              <li class="divider"></li>
+              <li class="dropdown-header" style="font-size: 14px; font-weight: bolder; background-color: darkblue; color: #ffffff">Действия:</li>
+              <li><%= link_to '<span class="fa fa-edit"></span>'.html_safe + ' ' + t(".edit", :default => t("helpers.links.edit")),
+                              edit_book_path( @book ) %> </li>
+              <li>
+                <%= link_to '<span class="fa fa-trash-o"></span> Удалить'.html_safe, book_path(@book), :method => :delete, :data => { :confirm => t('.confirm',
+                    :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %>
+              </li>
+
+              <% end %>
+
+            </ul>
+          </li>
+          <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "О проекте" %></li>
           <% if user_signed_in? %>
+              <li><%= link_to "Настройки", properties_path  %></li>
               <li>
                 <% @linker = '<i class="fa fa-user"></i><span style="color: green">'.html_safe+' '+ current_user[:username]+'</span>'.html_safe%>
                 <%= link_to @linker, edit_user_path(current_user[:id])%>
@@ -47,12 +83,11 @@
     </div>
     <div class="span2">
       <div class="well well-sm" align="center">
-        <h4 class="list-group-item-heading">В наличии:</h4>
-        <% @linker = '
-        <p class="list-group-item-text">'.html_safe + controller.full_summ() +'</p>'.html_safe %>
-        <%= link_to @linker, accounts_path %>
+        <h4 class="list-group-item-heading">На жизнь:</h4>
+        <p class="list-group-item-text"><%= controller.need_4_good %></p>
       </div>
     </div>
+
   </div>
   <% end %>
   <div class="row">

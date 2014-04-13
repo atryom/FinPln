@@ -34,6 +34,12 @@ ru:
       transaction:
         other: "транзакции"
         one: "транзакция"
+      book:
+        other: "Книги"
+        one: "Книгу"
+      property:
+        other: "Настройки"
+        one: "Настройка"
     attributes:
       account:
         titleize: "Счета"
@@ -54,6 +60,12 @@ ru:
         fact_date: "Фактическая дата"
         fact_amount: "Фактическая дата"
         completed: "Выполнено?"
+      book:
+        name: "Наименование"
+        note: "Описание"
+      property:
+        need_4_good: "На жизнь"
+        bottleneck: "Узкое место"
 
     errors:
       models:

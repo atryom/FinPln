@@ -11,6 +11,7 @@ ru:
       destroy: "Удалить"
       new: "Добавить"
       edit: "Изменить"
+      save: "Сохранить"
     titles:
       edit: "Изменить %{model}"
       save: "Сохранить %{model}"

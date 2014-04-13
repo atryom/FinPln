@@ -1,0 +1,30 @@
+<h1>Настройки</h1>
+<%= form_for(@property) do |f| %>
+  <% if @property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+      <% @property.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="control-group">
+      <%= f.label :need_4_good, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :need_4_good, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :bottleneck, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :bottleneck, :class => 'text_field' %>
+      </div>
+    </div>
+  <div class="actions">
+    <%= f.submit t("helpers.links.save") %>
+  </div>
+<% end %>

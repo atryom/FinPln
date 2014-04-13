@@ -1,0 +1,12 @@
+<legend>Счета:</legend>
+<div class="list-group">
+<% @accounts.each do |account|
+   @linker = "<h4 class=\"list-group-item-heading\">".html_safe + account.currency_code_icon + ' ' +account.name +
+    "</h4> <p class=\"list-group-item-text\">".html_safe + account.currency_value + "</p>".html_safe
+   %>
+   <%= link_to @linker, edit_account_path(account), class: "list-group-item" %>
+<% end %>
+  <a align="center" class="list-group-item" href="<%= accounts_path %>">
+    <h4 class="list-group-item-heading" style="font-weight: bolder">Сумма: <%= @full_summ %></h4>
+  </a>
+</div>
