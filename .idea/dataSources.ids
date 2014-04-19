@@ -3,4 +3,10 @@
   <data-source source="LOCAL" name="Rails finpln: development" uuid="27570e9d-46c9-4b81-923c-bc295793e3cc">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
+  <data-source source="LOCAL" name="Rails finpln: production" uuid="d6a36ae0-9c5d-4827-8b8e-e17ad89a14ae">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails finpln: test" uuid="eca26207-4bad-4ba1-aba3-da958cef9aff">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
 </component>
