@@ -32,7 +32,9 @@ class Transaction < ActiveRecord::Base
     @@cur_user = user
     @@line = 1
     @@day_for = Date.today
-    @@n4g = @@cur_user.property[:need_4_good] / 30
+    if @@cur_user.property != nil
+      @@n4g = @@cur_user.property[:need_4_good] / 30
+    end
   end
   def add_def_amount
     if (self.plan_date != nil && self.plan_amount != nil)

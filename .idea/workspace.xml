@@ -59,19 +59,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="transaction.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="transaction.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/transaction.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="50" selection-start="754" selection-end="754" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="765">
+            <state line="36" column="7" selection-start="798" selection-end="798" vertical-scroll-proportion="0.7956318" vertical-offset="30" max-vertical-offset="795">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="application_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="29" selection-start="631" selection-end="631" vertical-scroll-proportion="0.67862713" vertical-offset="0" max-vertical-offset="641">
+            <state line="30" column="0" selection-start="658" selection-end="658" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
               <folding />
             </state>
           </provider>
@@ -132,7 +132,6 @@
         <option value="$PROJECT_DIR$/app/models/book.rb" />
         <option value="$PROJECT_DIR$/app/controllers/transactions_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/transactions/index.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/transaction.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/books/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/views/transactions/edit.html.erb" />
@@ -150,6 +149,7 @@
         <option value="$PROJECT_DIR$/config/deploy.rb" />
         <option value="$PROJECT_DIR$/shared/database.yml" />
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/transaction.rb" />
       </list>
     </option>
   </component>
@@ -771,16 +771,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/transaction.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="50" selection-start="754" selection-end="754" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="765">
+        <state line="30" column="0" selection-start="658" selection-end="658" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/transaction.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="29" selection-start="631" selection-end="631" vertical-scroll-proportion="0.67862713" vertical-offset="0" max-vertical-offset="641">
+        <state line="36" column="7" selection-start="798" selection-end="798" vertical-scroll-proportion="0.7956318" vertical-offset="30" max-vertical-offset="795">
           <folding />
         </state>
       </provider>

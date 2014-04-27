@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
 
   def need_4_good
     if user_signed_in? and current_user.property != nil
+
       sprintf("%0.02f р.",current_user.property.need_4_good)
     else
       sprintf("%0.02f р.", 0)
