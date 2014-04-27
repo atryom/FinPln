@@ -2,7 +2,7 @@
 lock '3.2.1'
 
 set :application, 'finpln'
-aaplication = 'finpln'
+application = 'finpln'
 set :repo_url, 'git@github.com:atryom/FinPln.git'
 set :rvm_type, :user
 set :rvm_ruby_version, '2.0.0-p451'
@@ -89,7 +89,7 @@ namespace :deploy do
       execute "mkdir  /var/www/apps/#{application}/log/"
       execute "mkdir  /var/www/apps/#{application}/socket/"
       execute "mkdir #{shared_path}/system"
-      sudo "ln -s /var/log/upstart /var/www/log/upstart"
+      sudo "ln -nfs /var/log/upstart /var/www/log/upstart"
 
       upload!('shared/database.yml', "#{shared_path}/config/database.yml")
 
@@ -99,11 +99,12 @@ namespace :deploy do
       upload!('shared/nginx.conf', "#{shared_path}/nginx.conf")
       sudo 'stop nginx'
       sudo "rm -f /usr/local/nginx/conf/nginx.conf"
-      sudo "ln -s #{shared_path}/nginx.conf /usr/local/nginx/conf/nginx.conf"
+      sudo "ln -nfs #{shared_path}/nginx.conf /usr/local/nginx/conf/nginx.conf"
       sudo 'start nginx'
 
       within release_path do
-        with rails_env: fetch(:rails_env) do
+        #with rails_env: fetch(:rails_env) do
+        with rails_env: :production do
           execute :rake, "db:create"
         end
       end
@@ -128,7 +129,7 @@ namespace :deploy do
       foreman_temp = "/var/www/tmp/foreman"
       execute  "mkdir -p #{foreman_temp}"
       # Создаем папку current для того, чтобы foreman создавал upstart файлы с правильными путями
-      execute "ln -s #{release_path} #{current_path}"
+      execute "ln -nfs #{release_path} #{current_path}"
 
       within current_path do
         execute "cd #{current_path}"
